@@ -1,0 +1,729 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap");
+
+:root{
+	--clr-pri-dblue: hsl(233, 26%, 24%);
+	--clr-pri-limeg: hsl(136, 65%, 51%);
+	--clr-pri-bcyan: hsl(192, 70%, 51%);
+
+	--clr-neu-gblue: hsl(233, 8%, 62%);
+	--clr-neu-lgblue: hsl(220, 16%, 96%);
+	--clr-neu-lgrey: hsl(0, 0%, 98%);
+	--clr-neu-white: hsl(0, 0%, 100%);
+
+	--ft-fml: 'Public Sans', sans-serif;;
+	--ft-sz: 1.125rem;
+	--fw-300: 300;
+	--fw-400: 400;
+	--fw-700: 700;
+}
+
+/* ########################################
+   ########################################
+   ######## General Styling & Layout ######
+   ########################################
+   ########################################
+*/
+
+*,
+*::after,
+*::before{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+body{
+	height: auto;
+	width: 100vw;
+	overflow-x: hidden;
+	font-family: var(--ft-fml);
+	font-size: var(--ft-sz);
+}
+
+.invite{
+	background-image: linear-gradient(
+		to right, 
+		#31d35c, 
+		#00d192, 
+		#00cbbb, 
+		#00c2d4, 
+		#2bb7da);
+	border: none;
+	height: 3.2em;
+	width: 12.5em;
+	/* padding: 0 2.5em; */
+	border-radius: 2em;
+	color: var(--clr-neu-white);
+	font-weight: bold;
+	transition: opacity 200ms ease-in-out;
+	cursor: pointer;
+}
+
+/* Micro-Interactions */
+/* Make opacity of gradient on invite button less on hover */
+
+.invite:hover,
+.invite:focus{
+	opacity: 55%;
+}
+
+.invite:focus{
+	outline-style: dotted;
+}
+
+/* Logo */
+.logo-link:focus{
+	outline-style: dotted;
+}
+
+
+/* 
+********************************
+Making the scrollBar look nicer;
+******************************** 
+ */
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--clr-neu-white);
+  border: solid 1px var(--clr-neu-lgblue);
+  border-radius: 1em;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(
+		to bottom, 
+		#31d35c, 
+		#00d192, 
+		#00cbbb, 
+		#00c2d4, 
+		#2bb7da);
+  border-radius: 1em;
+}
+
+/* Handle on hover (Currently does nothing) */
+/* ::-webkit-scrollbar-thumb:hover {
+  
+} */
+
+
+
+/* ########################################
+   ########################################
+   ######## Header Layout And Navbar ######
+   ########################################
+   ########################################
+*/
+
+/* Layout */
+
+header{
+	height: auto;
+	width: 100%;
+}
+
+
+.toggle-nav{
+	display: none;
+}
+
+.navbar{
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-around;
+	/* border-bottom: solid 1px black; */
+}
+
+.nav-links{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 30%;
+	list-style: none;
+	padding: 1.5em 0;
+}
+
+.navbar .logo{
+	padding: 1.5em 0;
+}
+
+.nav-link a{
+	text-decoration: none;
+	color: var(--clr-neu-gblue);
+	font-size: 1rem;
+	cursor: pointer;
+	transition: color 200ms ease-in-out;
+}
+
+/* Micro-Interactions */
+
+/* Line from bottom on link hover */
+.nav-link a::after{
+	content: "";
+    display: block;
+    background-image: linear-gradient(
+		to right, 
+		#31d35c, 
+		#00d192, 
+		#00cbbb, 
+		#00c2d4, 
+		#2bb7da);
+    width: auto;
+    height: 5px;
+    border-radius: 1em;
+    -webkit-transform: scaleX(0.0001);
+  	-ms-transform: scaleX(0.0001);
+  	transform: scaleX(0.0001);
+  	transform-origin: middle;
+  	-webkit-transition: -webkit-transform 500ms ease-in-out;
+  	transition: transform 500ms ease-in-out;
+}
+
+.nav-link a:hover::after,
+.nav-link a:focus::after{
+    -webkit-transform: scaleX(1);
+  	-ms-transform: scaleX(1);
+  	transform: scaleX(1);
+}
+
+/* Make color deeper on link hover */
+
+.nav-links a:hover,
+.nav-links a:focus{
+	color: var(--clr-pri-dblue);
+}
+
+.nav-links a:focus{
+	outline-style: dotted;
+}
+
+
+/* 
+   ########################################
+   ######## Navbar Responsive Design ######
+   ########################################
+*/
+
+@media screen and (max-width: 1000px){
+	.nav-links{
+		width: 40%;
+	}
+}
+
+@media screen and (max-width: 720px){
+	.navbar .invite{
+		display: none;
+	}
+
+	.nav-links{
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 550px){
+	.toggle-nav{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-left: 2em;
+	}
+
+	.nav-links{
+		position: fixed;
+		flex-direction: column;
+		top: 5em;
+		background-color: var(--clr-neu-white);
+		display: none;
+  		border-radius: 2rem;
+  		width: 80vw;
+
+  	}
+
+	.nav-link{
+		padding: 0.5em 0;
+	}
+
+	.dropdown{
+		display: flex;
+		filter: drop-shadow(0 0 10em black);
+	}
+
+
+
+}
+
+
+/* ########################################
+   ########################################
+   ##### Main Section Layout & Design #####
+   ########################################
+   ########################################
+*/
+
+/* Basic Styles */
+
+main{
+	background-color: var(--clr-neu-lgrey);
+	max-height: 100vh;
+}
+
+.heading{
+	font-weight: var(--fw-400);
+	font-size: 3rem;
+	color: var(--clr-pri-dblue);
+	text-align: left;
+}
+
+main p{
+	color: var(--clr-neu-gblue);
+}
+
+/* Layout */
+
+main{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.illustration{
+	background-image: url("images/bg-intro-desktop.svg");
+	background-repeat: no-repeat;
+	background-position: -80px 65px;
+	width: 50%;
+}
+
+.content{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+}
+
+.heading,
+.content p,
+.content .invite{
+	margin-left: 20%;
+	margin-bottom: 1em;
+}
+
+.heading{
+	max-width: 15ch;
+}
+
+.content p{
+	max-width: 35ch; 
+	line-height: 1.5em;
+}
+
+.content .invite{
+	margin-top: 1em;
+}
+
+/* 
+   ########################################
+   ### Main Section Responsive Design #####
+   ########################################
+*/
+
+@media screen and (max-width: 1000px){
+	main{
+		display: block;
+	}
+
+	.illustration{
+			display: none;
+	}
+
+	.content{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}	
+
+	.heading,
+	.content p,
+	.content .invite{
+		margin-left: 0;
+		margin-bottom: 1em;
+	}
+
+	.heading{
+		text-align: center;
+		margin-top: 2em;
+	}
+
+	.content .invite{
+		margin-bottom: 10em;
+	}
+
+}
+
+@media screen and (max-width: 550px){
+	.content{
+		padding-left:10%;
+		padding-right:10%;
+	}
+}
+
+/* **********************************
+   **********************************
+   ****** The Main Section is *******
+   ****** not perfect but is ********
+   ****** usable so I'll be moving **
+   ****** on.                 *******
+   **********************************
+   **********************************
+*/
+
+
+/* ########################################
+   ########################################
+   #### Why-us Section Layout & Design ####
+   ########################################
+   ########################################
+*/
+
+
+/* Basic Layout & Styling */
+
+.why-us{
+	background-color: var(--clr-neu-lgblue);
+	width: 100vw;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	padding: 0 8em;
+}
+
+.benefits{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 2.5em;
+}
+
+.why-us-heading{
+	font-weight: var(--fw-400);
+	font-size: 2.5rem;
+	color: var(--clr-pri-dblue);
+	text-align: left;
+}
+
+.why-us p{
+	color: var(--clr-neu-gblue);
+	font-weight: var(--fw-300);
+}
+
+.why-us > p{
+	font-weight: var(--fw-400);
+	max-width: 60ch;
+}
+
+.benefit-heading{
+	color: var(--clr-pri-dblue);
+	font-weight: var(--fw-300);
+}
+
+.benefits{
+	padding-bottom: 5em;
+	padding-top: 5em;
+}
+
+.benefit > img{
+	padding-bottom: 2em;
+}
+
+.benefit > .benefit-heading{
+	padding-bottom: 1em;
+}
+
+.why-us-heading{
+	padding-top: 3em;
+	padding-bottom: 1em;
+}
+
+
+/* *** Looks Good After The Above styling *** */
+
+/* 
+   ########################################
+   ### Why-Us Section Responsive Design ###
+   ########################################
+*/
+
+@media screen and (max-width: 1000px){
+
+	.why-us{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.benefits{
+		flex-direction: column;
+	}
+
+	.benefit{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.why-us > p{
+		text-align: center;
+		min-width: 35ch;
+	}
+
+	.why-us-heading{
+		text-align: center;
+		min-width: 10ch;
+	}
+
+	.benefit > p{
+		text-align: center;
+	}
+
+	.benefit-heading{
+		text-align: center;
+	}
+}
+
+
+/* **************************
+   ** Looks Good , Just *****
+   * Need to add a @support *
+   ***** Query for gap ******
+   **************************
+*/
+
+
+
+/* ########################################
+   ########################################
+   ### Articles Section Layout & Design ###
+   ########################################
+   ########################################
+*/
+
+.latest-articles{
+	height: auto;
+	width: 100vw;
+	background-color: var(--clr-neu-lgrey);
+	padding: 4em 8em;
+}
+
+.latest-articles > h2{
+	font-weight: var(--fw-400);
+	font-size: 2.5rem;
+	color: var(--clr-pri-dblue);
+	text-align: left;
+}
+
+.articles{ 
+
+	display: grid;
+    gap: 2em;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    padding: 2em 0;
+
+}
+
+.article > img{
+	height: 50%;
+	width: 100%;
+	border-top-right-radius: 0.5em;
+	border-top-left-radius: 0.5em;
+}
+
+.article{
+	height: auto;
+	border-radius: 0.5em;
+	background-color: var(--clr-neu-white);
+}
+
+.article-author{
+	font-weight: var(--fw-300);
+	font-size: 0.6em;
+	color: var(--clr-neu-gblue);
+	margin-left: 1em;
+
+}
+
+.article-heading{
+	font-weight: var(--fw-400);
+	color: var(--clr-neu-lblue);
+	font-size: 0.9em;
+	transition: color 200ms ease-in-out;
+}
+
+.article > p{
+	font-weight: var(--fw-400);
+	font-size: 0.75em;
+	color: var(--clr-neu-gblue);
+}
+
+.article-author,
+.article-heading,
+.article > p{
+	padding: 0.5em 1.5em;
+}
+
+/* Micro Interactions */
+
+.article-heading:hover,
+.article-heading:focus{
+	color: var(--clr-pri-limeg);
+	cursor: pointer;
+}
+
+
+/* ########################################
+   ########################################
+   #### Footer Section Layout & Design ####
+   ########################################
+   ########################################
+*/
+
+footer{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	height: auto;
+	width: 100vw;
+	background-color: var(--clr-pri-dblue);
+	color: var(--clr-neu-white);
+}
+
+.foot-nav{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 5em;
+}
+
+.social-media{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 1em;
+}
+
+footer .logo{
+	color: var(--clr-neu-white);
+}
+
+.foot-nav ul{
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 1em;
+}
+
+.foot-nav a{
+	text-decoration: none;
+	color: var(--clr-neu-white);
+	font-size: 0.85em;
+	font-weight: var(--fw-300);
+	transition: color 200ms ease-in-out;
+}
+
+
+footer{
+	padding: 3.5em 1em;
+}
+
+.left{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	gap: 2em;
+}
+
+.right{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 1.5em;
+}
+
+.right button{
+	margin-left: 5em;
+}
+
+.right .copy{
+	font-size: 0.9em;
+	color: var(--clr-neu-gblue);
+}
+
+.social svg{
+	color: var(--clr-neu-white);
+	transition: color 200ms ease-in-out;
+}
+
+
+/* Micro Interactions */
+
+.foot-nav a:hover,
+.foot-nav a:focus{
+	color: var(--clr-pri-limeg);
+}
+
+.social:hover svg{
+	color: var(--clr-pri-limeg);
+}
+
+
+/* 
+   ########################################
+   ### Footer Section Responsive Design ###
+   ########################################
+*/
+
+
+@media screen and (max-width: 1000px){
+	footer,
+	.foot-nav{
+		flex-direction: column;
+	}
+
+	.foot-nav{
+		gap: 1em;
+	}
+
+	.foot-nav ul{
+		align-items: center;
+	}
+
+	.social-media{
+		padding-bottom: 1em;
+	}
+
+	.right button{
+		margin-left: 0;
+		margin-top: 1em;
+	}
+
+	.right{
+		align-items: center;
+	}
+
+
+}
+
+
+/* # COMPLETED # */
