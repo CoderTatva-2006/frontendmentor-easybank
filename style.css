@@ -452,6 +452,7 @@ main{
 .why-us-heading{
 	padding-top: 3em;
 	padding-bottom: 1em;
+
 }
 
 
@@ -485,6 +486,7 @@ main{
 	.why-us > p{
 		text-align: center;
 		min-width: 35ch;
+		padding: 2em;
 	}
 
 	.why-us-heading{
@@ -522,7 +524,7 @@ main{
 	height: auto;
 	width: 100vw;
 	background-color: var(--clr-neu-lgrey);
-	padding: 4em 8em;
+	padding: 4em 4em;
 }
 
 .latest-articles > h2{
